@@ -4,7 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Umbanda: Religião Brasileira</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.pxfuel.com/pt/desktop-wallpaper-eiwop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .orixa {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .orixa img {
+            width: 80%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .orixa {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,58 +124,63 @@
     <section id="introducao">
         <h2>O que é Umbanda?</h2>
         <p>A Umbanda é uma religião brasileira que mistura elementos do catolicismo, espiritismo, religiões africanas e indígenas. Ela busca promover a caridade, a evolução espiritual e o respeito às forças da natureza.</p>
-        <img src="umbanda1.jpg" alt="Ritual de Umbanda">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Umbanda_Ritual.jpg" alt="Ritual de Umbanda" style="width: 100%; border-radius: 10px; margin-top: 15px;">
     </section>
 
     <section id="orixas">
         <h2>Os Orixás</h2>
-        <p>Os Orixás são entidades espirituais que representam forças da natureza e aspectos da vida humana. Cada um possui características e histórias próprias.</p>
+        <p>Os Orixás representam forças da natureza e aspectos da vida humana.</p>
         <div class="orixa">
-            <img src="oxala.jpg" alt="Oxalá">
+            <img src="https://www.colegioweb.com.br/wp-content/uploads/2017/02/Oxala.jpg" alt="Oxalá">
             <p><strong>Oxalá:</strong> Orixá da criação e da paz.</p>
         </div>
         <div class="orixa">
-            <img src="ogum.jpg" alt="Ogum">
+            <img src="https://www.dicionariodesimbolos.com.br/img/orixa-ogum.jpg" alt="Ogum">
             <p><strong>Ogum:</strong> Orixá da guerra e da tecnologia.</p>
         </div>
         <div class="orixa">
-            <img src="iemanja.jpg" alt="Iemanjá">
+            <img src="https://www.dicionariodesimbolos.com.br/img/iemanja.jpg" alt="Iemanjá">
             <p><strong>Iemanjá:</strong> Orixá das águas e da maternidade.</p>
         </div>
         <div class="orixa">
-            <img src="xango.jpg" alt="Xangô">
+            <img src="https://www.colegioweb.com.br/wp-content/uploads/2017/02/Xango.jpg" alt="Xangô">
             <p><strong>Xangô:</strong> Orixá da justiça e do trovão.</p>
         </div>
         <div class="orixa">
-            <img src="oxum.jpg" alt="Oxum">
+            <img src="https://www.dicionariodesimbolos.com.br/img/oxum.jpg" alt="Oxum">
             <p><strong>Oxum:</strong> Orixá do amor e da beleza.</p>
         </div>
         <div class="orixa">
-            <img src="ogum.jpg" alt="Ogum">
-            <p><strong>Ogum:</strong> Orixá da guerra e da tecnologia.</p>
+            <img src="https://www.dicionariodesimbolos.com.br/img/iansa.jpg" alt="Iansã">
+            <p><strong>Iansã:</strong> Orixá dos ventos e tempestades.</p>
         </div>
         <div class="orixa">
-            <img src="iemanja.jpg" alt="Iemanjá">
-            <p><strong>Iemanjá:</strong> Orixá das águas e da maternidade.</p>
+            <img src="https://www.dicionariodesimbolos.com.br/img/omulu.jpg" alt="Omulu">
+            <p><strong>Omulu:</strong> Orixá da cura e das doenças.</p>
         </div>
     </section>
 
     <section id="rituais">
         <h2>Rituais de Umbanda</h2>
-        <p>Os rituais de Umbanda envolvem cânticos, danças e oferendas para os Orixás e espíritos. Eles são realizados em terreiros, com a presença de médiuns e guias espirituais.</p>
+        <p>Os rituais envolvem cânticos, danças e oferendas realizadas em terreiros, com médiuns e guias espirituais.</p>
         <button id="mostrarRitual">Mostrar um Ritual</button>
-        <p id="ritualDescricao" style="display:none;">Durante um ritual, os médiuns incorporam entidades espirituais para transmitir mensagens e orientações aos participantes.</p>
+        <p id="ritualDescricao" style="display:none;">Durante um ritual, os médiuns incorporam entidades espirituais que transmitem mensagens e orientações aos participantes, sempre com foco na caridade e no equilíbrio espiritual.</p>
     </section>
 
     <section id="contato">
         <h2>Contato</h2>
-        <p>Para mais informações sobre a Umbanda, entre em contato conosco através do e-mail: <a href="mailto:contato@umbanda.com">contato@umbanda.com</a></p>
+        <p>Para mais informações, entre em contato pelo e-mail: <a href="mailto:contato@umbanda.com">contato@umbanda.com</a></p>
     </section>
 
     <footer>
         <p>&copy; 2025 Umbanda: Religião Brasileira. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('mostrarRitual').addEventListener('click', function() {
+            const descricao = document.getElementById('ritualDescricao');
+            descricao.style.display = (descricao.style.display === 'none' || descricao.style.display === '') ? 'block' : 'none';
+        });
+    </script>
 </body>
 </html>
