@@ -3,45 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel da Silva Passos</title>
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <h1>Controle de Estoque</h1>
 
-<header>
-    <h1><font color="red">Programação(Matematica II).</font></h1>
-    <h2><font color="green">Prova 1° Trimestre.</font></h2>
-    <h3>Prova de HTML no laboratorio</h3>
-    <h4><IUCN.”>Minha dupla é ninguem,</u> esse trabalho e feito apenas por uma pessoa, que gosta de jogar, e assistir futebool, e ir pro terreiro.</h4>
-</header>
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-<main>
-    <section>
-        <h2>I. Onde eu, Gabriel da Silva Passos, Gosto de ir: </h2>
-        <p>°Gabriel da silva passos gosto de ir para o terreiro.</p>
-    </section>
-<img src="https://github.com/luan07k/Site-GitHub/assets/162522077/0138bec6-60c0-4042-8447-651400674dc7" alt="Nautico" width="300" height="200">
-        
-    <section>
-        <h3>II. O que gosta de comer</h3>
-        <p>Eu gosto de Comer Pizza.</p>
-    </section>
-<img src="https://github.com/Gabriel09210/passos/assets/162522144/d74c5e61-cf56-43df-a283-0acaa8088652" alt="Nautico" width="300" height="200">
-    
-    <section>
-        <h4>III. O que gosto de beber</h4>
-        <p>Eu gosto de beber COCA.</p>
-    </section>
-<img src="https://github.com/Gabriel09210/passos/assets/162522144/e191e0f8-e8ea-4bcf-9c92-4a14e9b5c678" alt="Nautico" width="300" height="200">
+        <nav>
+            <a href="{{ url_for('saida_produto') }}" class="button">Registrar Saída</a>
+            <a href="{{ url_for('adicionar_editar_produto') }}" class="button">Adicionar Novo Produto</a>
+        </nav>
 
-    <h5>links para download </h5>
-    <a href="A ARTE DA GUERRA.pdf" download"A ARTE DA GUERRA.pdf" type="application/pdf">
-        
-</main>
+        <h2>Estoque Baixo!</h2>
+        {% if estoque_baixo %}
+            <ul class="low-stock-list">
+                {% for produto in estoque_baixo %}
+                    <li>
+                        <span class="product-name">{{ produto.nome }}</span> -
+                        <span class="current-stock">Estoque Atual: {{ produto.quantidade_em_estoque }}</span> (Mínimo: {{ produto.estoque_minimo }})
+                        <a href="{{ url_for('adicionar_editar_produto', id=produto.id) }}" class="edit-button">Editar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum produto com estoque baixo no momento.</p>
+        {% endif %}
 
-<footer>
-    <p>Winrar.rar.</p>
-</footer>
-
+        <h2>Todos os Produtos</h2>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor Unitário</th>
+                    <th>Quantidade em Estoque</th>
+                    <th>Estoque Mínimo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.nome }}</td>
+                        <td>R$ {{ "%.2f" % produto.valor_unitario }}</td>
+                        <td>{{ produto.quantidade_em_estoque }}</td>
+                        <td>{{ produto.estoque_minimo }}</td>
+                        <td>
+                            <a href="{{ url_for('adicionar_editar_produto', id=produto.id) }}" class="edit-button">Editar</a>
+                            <form action="{{ url_for('deletar_produto', id=produto.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="delete-button" onclick="return confirm('Tem certeza que deseja deletar este produto?');">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Nenhum produto cadastrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
-
