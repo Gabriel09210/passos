@@ -1,186 +1,73 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umbanda: Religião Brasileira</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://i.imgflip.com/7cvube.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        header {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-
-        section {
-            padding: 20px;
-            margin: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);           
-        }
-
-        section h2 {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-
-        .orixa {
-            display: inline-block;
-            width: 30%;
-            margin: 10px;
-            text-align: center;
-        }
-
-        .orixa img {
-            width: 80%;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 5px;
-            display: block;
-            margin: 20px auto;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .orixa {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Umbanda: Religião Brasileira</h1>
+    <div class="container">
+        <h1>Controle de Estoque</h1>
+
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <nav>
-            <ul>
-                <li><a href="#introducao">Introdução</a></li>
-                <li><a href="#orixas">Orixás</a></li>
-                <li><a href="#rituais">Rituais</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+            <a href="{{ url_for('saida_produto') }}" class="button">Registrar Saída</a>
+            <a href="{{ url_for('adicionar_editar_produto') }}" class="button">Adicionar Novo Produto</a>
         </nav>
-    </header>
 
-    <section id="introducao">
-        <h2>O que é Umbanda?</h2>
-        <p>A Umbanda é uma religião brasileira que mistura elementos do catolicismo, espiritismo, religiões africanas e indígenas. Ela busca promover a caridade, a evolução espiritual e o respeito às forças da natureza.</p>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg" alt="Ritual de Umbanda" style="width: 100%; border-radius: 10px; margin-top: 15px;">
-    </section>
+        <h2>Estoque Baixo!</h2>
+        {% if estoque_baixo %}
+            <ul class="low-stock-list">
+                {% for produto in estoque_baixo %}
+                    <li>
+                        <span class="product-name">{{ produto.nome }}</span> -
+                        <span class="current-stock">Estoque Atual: {{ produto.quantidade_em_estoque }}</span> (Mínimo: {{ produto.estoque_minimo }})
+                        <a href="{{ url_for('adicionar_editar_produto', id=produto.id) }}" class="edit-button">Editar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum produto com estoque baixo no momento.</p>
+        {% endif %}
 
-    <section id="orixas">
-        <h2>Os Orixás</h2>
-        <p>Os Orixás representam forças da natureza e aspectos da vida humana.</p>
-        <div class="orixa">
-            <img src=https://caminhosdaluzsm.com.br/wp-content/uploads/2023/10/100-1024x576.jpg" alt="Oxalá">
-            <p><strong>Oxalá:</strong> Orixá da criação e da paz.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://s2-extra.glbimg.com/cnxZ8Th34qeuO3ExpYt4iF3heXE=/0x0:1600x900/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f551ea7087a47f39ead75f64041559a/internal_photos/bs/2023/J/6/SmEXZPSEG0BoqYd782rg/ogum-e-sao-jorge-extra-e-site-e-redes-publicar-mesmo.jpg" alt="Ogum">
-            <p><strong>Ogum:</strong> Orixá da guerra e da tecnologia.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://static.significados.com.br/foto/yemanja.jpg?width=768" alt="Iemanjá">
-            <p><strong>Iemanjá:</strong> Orixá das águas e da maternidade.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://www.aldeiadecaboclos.com.br/wp-content/uploads/2023/07/slider-xando-2023-2-560x416.jpg" alt="Xangô">
-            <p><strong>Xangô:</strong> Orixá da justiça e do trovão.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://static.significados.com.br/foto/oxum-orixa.jpg?width=768" alt="Oxum">
-            <p><strong>Oxum:</strong> Orixá do amor e da beleza.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://i0.wp.com/agenciacenarium.com.br/wp-content/uploads/2021/12/quadro-orixa-iansa-arte-francesa-iansa.jpg?fit=600%2C380&ssl=1" alt="Iansã">
-            <p><strong>Iansã:</strong> Orixá dos ventos e tempestades.</p>
-        </div>
-        <div class="orixa">
-            <img src="https://www.raizesespirituais.com.br/wp-content/uploads/2011/03/obaluaie1.jpg" alt="Omulu">
-            <p><strong>Omulu:</strong> Orixá da cura e das doenças.</p>
-        </div>
-    </section>
-
-    <section id="rituais">
-        <h2>Rituais de Umbanda</h2>
-        <p>Os rituais envolvem cânticos, danças e oferendas realizadas em terreiros, com médiuns e guias espirituais.</p>
-        <button id="mostrarRitual">Mostrar um Ritual</button>
-        <p id="ritualDescricao" style="display:none;">Durante um ritual, os médiuns incorporam entidades espirituais que transmitem mensagens e orientações aos participantes, sempre com foco na caridade e no equilíbrio espiritual.</p>
-    </section>
-
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Para mais informações, entre em contato pelo e-mail: <a href="mailto:contato@umbanda.com">contato@umbanda.com</a></p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Umbanda: Religião Brasileira. Todos os direitos reservados.</p>
-    </footer>
-
-    <script>
-        document.getElementById('mostrarRitual').addEventListener('click', function() {
-            const descricao = document.getElementById('ritualDescricao');
-            descricao.style.display = (descricao.style.display === 'none' || descricao.style.display === '') ? 'block' : 'none';
-        });
-    </script>
+        <h2>Todos os Produtos</h2>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor Unitário</th>
+                    <th>Quantidade em Estoque</th>
+                    <th>Estoque Mínimo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.nome }}</td>
+                        <td>R$ {{ "%.2f" % produto.valor_unitario }}</td>
+                        <td>{{ produto.quantidade_em_estoque }}</td>
+                        <td>{{ produto.estoque_minimo }}</td>
+                        <td>
+                            <a href="{{ url_for('adicionar_editar_produto', id=produto.id) }}" class="edit-button">Editar</a>
+                            <form action="{{ url_for('deletar_produto', id=produto.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="delete-button" onclick="return confirm('Tem certeza que deseja deletar este produto?');">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Nenhum produto cadastrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
